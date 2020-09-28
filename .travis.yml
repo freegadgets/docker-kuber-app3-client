@@ -1,0 +1,10 @@
+language: generic 
+sudo: required 
+services:
+  - docker 
+
+before_install:
+  - docker build -t app3/client -f Dockerfile.dev . 
+
+script:
+  - docker run CI=true app3/client npm run test
