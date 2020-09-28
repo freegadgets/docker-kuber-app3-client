@@ -8,3 +8,18 @@ before_install:
 
 script:
   - docker run -e CI=true app3/client npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2" 
+  app: "dev-docker-app3"
+  env: "DevDockerApp3-env"
+  bucket_name: "elasticbeanstalk-us-east-2-810789171366"
+  bucket_path: "dev-docker-app3"
+  on:
+    branch: master 
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
+# http://devdockerapp3-env.eba-yizeuvrq.us-east-2.elasticbeanstalk.com/
+
